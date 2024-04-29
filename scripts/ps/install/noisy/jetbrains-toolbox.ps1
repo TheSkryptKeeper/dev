@@ -20,8 +20,9 @@ if ($exeSHA256 -ne $latestDownloadSha256) {
 $installProcessInfo = New-Object System.Diagnostics.ProcessStartInfo
 $installProcessInfo.FileName = $exe
 $installProcessInfo.UseShellExecute = $false
+
 $installProcess = New-Object System.Diagnostics.Process
-$installProcess.StartInfo = $pinfo
+$installProcess.StartInfo = $installProcessInfo
 $installProcess.Start() | Out-Null
 $installProcess.WaitForExit()
 
