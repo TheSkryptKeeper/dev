@@ -15,16 +15,7 @@ if (-not ($exeSig | Test-Path)) {
 
 # TODO: use the sig file to verify the download (looks like it needs gpg)
 
-$installProcessInfo = New-Object System.Diagnostics.ProcessStartInfo
-$installProcessInfo.FileName = $exe
-$installProcessInfo.UseShellExecute = $true
-$installProcessInfo.Verb = "runas"
-$installProcessInfo.Arguments = "/S"
-
-$installProcess = New-Object System.Diagnostics.Process
-$installProcess.StartInfo = $installProcessInfo
-$installProcess.Start() | Out-Null
-$installProcess.WaitForExit()
+Start-Process "$exe" -ArgumentList "/S" -Wait
 
 Remove-Item $exe
 Remove-Item $exeSig
